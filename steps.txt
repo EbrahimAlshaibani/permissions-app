@@ -1,0 +1,16 @@
+composer require laravel/ui
+php artisan ui bootstrap --auth
+
+
+composer require spatie/laravel-permission
+
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+php artisan migrate
+php artisan migrate:refresh
+php artisan db:seed --class=PermissionsSeeder
+php artisan migrate:fresh --seed --seeder=PermissionsSeeder
+
+
+
+php artisan lang:publish
+php artisan make:middleware HasChangedPassword
