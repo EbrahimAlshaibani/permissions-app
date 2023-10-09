@@ -58,9 +58,9 @@
         <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="تأكيد كلمة المرور" value="{{ old('confirm-password') }}" autocomplete="off">
         <span class="text-danger">@error('confirm-password'){{ $message }}@enderror</span>
     </div>
-    <div class="col-md-12">
+    <div class="col-12">
         <label for="roles" class="form-label">الادوار</label>
-        <select class="form-select" name="roles[]" multiple>
+        <select class="form-select" name="roles[]" multiple id="roles_id">
             <option value="">---</option>
             @foreach ($roles as $role)
                 <option value="{{$role->name}}" {{in_array($role->name, $user->roles->pluck('name')->toArray())?'selected':''}} > {{ $role->name }}</option>
@@ -68,9 +68,9 @@
         </select>
         <span class="text-danger">@error('roles'){{ $message }}@enderror</span>
     </div>
-    <div class="col-md-12">
+    <div class="col-12">
         <label for="permissions" class="form-label">الصلاحيات</label>
-        <select class="form-select" name="permissions[]" multiple>
+        <select class="form-select" name="permissions[]" multiple id="permissions_id">
             <option value="">---</option>
             @foreach ($permissions as $permission)
                 <option value="{{$permission->name}}" {{in_array($permission->name, $user->permissions->pluck('name')->toArray())?'selected':''}}>{{$permission->description}}</option>
@@ -86,5 +86,15 @@
 
 @endsection
 @section('scripts')
-    <script>function add(){ $('#submit').hide()}</script>
+<script>
+    $(document).ready(function() {
+        $('#roles_id').select2({
+            theme: 'bootstrap-5'
+        });
+        $('#permissions_id').select2({
+            theme: 'bootstrap-5'
+        });
+    });
+</script>
 @endsection
+

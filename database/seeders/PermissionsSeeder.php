@@ -33,6 +33,8 @@ class PermissionsSeeder extends Seeder
             'user-cerate',
             'user-edit',
             'user-delete',
+            //others
+            'change-password',
         ];
         $permissions_description = [
             //roles
@@ -50,6 +52,8 @@ class PermissionsSeeder extends Seeder
             'اضافة مستخدم',
             'تعديل مستخدم',
             'حذف مستخدم',
+            //others
+            'تغيير كلمة المرور',
         ];
         foreach ($permissions as $index =>  $permission) {
             Permission::create([

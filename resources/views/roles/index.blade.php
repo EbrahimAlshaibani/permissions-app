@@ -7,7 +7,7 @@
 @can('role-create')
     <a class="btn btn-sm btn-success" href="{{ route('roles.create') }}"> إضافة دور جديد</a>
 @endcan
-@can('role-create')
+@can('permission-create')
     <a class="btn btn-sm btn-success" href="{{ route('permissions.create') }}"> إضافة صلاحية</a>
 @endcan
 <table class="table table-bordered table-hover mt-4 text-center">

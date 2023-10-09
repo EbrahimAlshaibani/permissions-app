@@ -14,14 +14,13 @@ use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
-    // function __construct()
-    // {
-    //         $this->middleware('permission:user-list|add-user|edit-user', ['only' => ['index','store']]);
-    //         $this->middleware('permission:user-cerate', ['only' => ['create','store']]);
-    //         $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
-    //         $this->middleware('permission:show-profile', ['only' => ['profile']]);
-    //         $this->middleware('permission:change-password', ['only' => ['changePassword']]);
-    // }
+    function __construct()
+    {
+            $this->middleware('permission:user-list', ['only' => ['index','show']]);
+            $this->middleware('permission:user-cerate', ['only' => ['create','store']]);
+            $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+            $this->middleware('permission:change-password', ['only' => ['changePassword']]);
+    }
     public function index(Request $request)
     {
         $users = User::with('roles')->latest()->paginate(25);
@@ -43,7 +42,7 @@ class UserController extends Controller
             'username'=> 'required|unique:users,username',
             'is_enabled' =>'required',
             'password' => 'required|same:confirm-password',
-            'roles' => 'required',
+            // 'roles' => 'required',
         ]);
         $user = User::create([
             'name' => $request->name,
